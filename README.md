@@ -210,8 +210,7 @@ cd .\quant-qmt
 
 有问题欢迎交流，可以加我微信。
 
-- 如果你是从本地仓库打开 README，请把你的微信二维码图片放到 `docs/assets/wechat-qr.png`，这里就可以直接显示。
-- 如果你是从 GitHub 仓库打开 README，当前二维码图片还没随本次改动一并入库，补上图片后这一节会直接展示。
+![微信二维码](./docs/assets/wechat-qr.jpg)
 
 ## 许可证
 
