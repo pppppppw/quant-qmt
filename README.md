@@ -1,26 +1,44 @@
 # quant-qmt
 
-`quant-qmt` 是一个独立的 QMT 开源项目，专门把 `QMT 网关`、`QMT 数据`、`QMT 交易` 抽成一个可单独安装、单独部署、单独维护的工具链。
+> A 股量化交易开源工具链：基于 `MiniQMT` 搭建自己的数据与交易网关，让策略研究、信号生成、下单执行可以自由部署在 Windows / Linux / macOS / Docker。
 
-它的核心价值很简单：
+如果你想开始做 A 股量化，通常会先碰到这几个问题：
 
-- 适合 A 股量化：股票池、交易日、历史数据、实时数据、交易接口都在一个体系里
-- 策略更安全：很多别的方案本质上是在别人的服务器上跑，你的策略代码要交给别人；QMT 这套更适合跑在你自己的环境里，策略代码和执行边界都在自己手上
-- 部署更灵活：可以本机直接调用，也可以把 Windows 网关放到局域网、云主机、Tailscale 或 VPN 里，让其他环境自由调用
-- 数据更省事：对已开通 QMT 的用户，很多常用数据可以直接通过 `xtdata` 使用，不用先接一套额外的数据 SaaS；更高阶权限如部分 VIP / Level2 仍取决于券商和权限
+- 数据从哪里来，怎么快速拿到可用的 A 股行情和交易接口
+- 策略代码放哪里，怎么尽量不把自己的策略逻辑交给第三方平台
+- 实盘或模拟盘怎么接，怎么把研究环境和交易执行环境拆开
+- 本机能跑，远程也能调，最好不要被 Windows 编码、环境和部署细节卡住
 
-`quant-qmt` is a standalone QMT gateway, data, and trading toolkit for A-share workflows.  
-It keeps MiniQMT on Windows while letting other environments call the gateway over HTTP.
+`quant-qmt` 就是为这条链路准备的。
+
+- 它聚焦 `QMT 网关`、`QMT 数据`、`QMT 交易`，不和其他大而全框架绑死
+- 它更适合 A 股量化：股票池、交易日、历史数据、实时数据、交易接口在一个体系里
+- 它更适合自己掌控：很多别的方案本质上跑在别人的服务器上，而 `quant-qmt` 这套更适合跑在你自己的环境里，策略代码和执行边界都留在自己手上
+- 它更适合灵活部署：既可以本机直接调用，也可以把 Windows 网关放到局域网、云主机、Tailscale 或 VPN 里，让其他环境自由调用
+- 它更适合快速起步：对已开通 QMT 的用户，很多常用数据可以直接通过 `xtdata` 使用，不用先接一套额外的数据 SaaS
+
+一句话理解这个项目：
+
+> 用 `MiniQMT` 解决 A 股数据和交易入口，用独立 Windows 网关隔离执行边界，用跨平台 SDK / CLI / HTTP 接口把你的量化研究和实盘部署串起来。
+
+`quant-qmt` is a standalone MiniQMT gateway, data, and trading toolkit for A-share quant workflows.
 
 这里特别说明一下：本项目里说的“本地运行 QMT”，默认指的是 `MiniQMT` 这条链路，不是完整版 QMT 投研端。`quant-qmt` 的网关、`xtdata`、`xttrader` 集成都以 `MiniQMT / userdata_mini` 为运行前提。
 
-## 为什么适合这个项目
+## 适合谁
 
-- `QMT` 本身就贴近 A 股交易语义
-- `xtdata + xttrader` 可以把数据、交易、查询和回调串起来
-- 官方资料明确提到数据和策略计算都在本地运行
-- 官方 XtQuant 文档明确写的是“基于 MiniQMT”，并要求先启动 `MiniQMT` 客户端
-- 对开源项目来说，这很适合做成“Windows 执行边界 + 跨平台调用层”
+- 想从 0 到 1 开始做 A 股量化交易的个人投资者
+- 想把策略代码留在自己机器或自己服务器里的开发者
+- 想把 Windows 交易执行边界和 Linux / macOS 研究环境拆开的团队
+- 已经开通 QMT，希望先用一套简单、透明、可控的方式跑通数据到交易闭环的人
+
+## 如何开始做 A 股量化
+
+最实用的起步方式其实很简单：
+
+1. 先开通 `MiniQMT / QMT` 权限，准备一个可登录的 Windows 环境。
+2. 用 `quant-qmt` 把 `MiniQMT` 起成一个独立网关，先把数据、查询、下单、撤单这些基础链路跑通。
+3. 先跑仓库自带的 `small_cap_enhanced` 示例策略，再逐步替换成你自己的策略逻辑。
 
 更详细的背景说明见 [QMT 背景与价值](./docs/qmt-background.md)。
 
@@ -187,6 +205,13 @@ cd .\quant-qmt
 - [常见问题排查](./docs/troubleshooting.md)
 - [Docker 参考文档](./docs/docker.md)
 - [验证报告](./docs/validation-report.md)
+
+## 联系方式
+
+有问题欢迎交流，可以加我微信。
+
+- 如果你是从本地仓库打开 README，请把你的微信二维码图片放到 `docs/assets/wechat-qr.png`，这里就可以直接显示。
+- 如果你是从 GitHub 仓库打开 README，当前二维码图片还没随本次改动一并入库，补上图片后这一节会直接展示。
 
 ## 许可证
 
