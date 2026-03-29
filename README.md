@@ -205,7 +205,7 @@ cd .\quant-qmt
 
 有问题欢迎交流，可以加我微信。
 
-![微信二维码](./docs/assets/wechat-qr.jpg)
+<img src="./docs/assets/wechat-qr.jpg" alt="微信二维码" width="280" />
 
 ## 许可证
 
